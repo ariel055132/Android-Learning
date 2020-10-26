@@ -109,7 +109,14 @@ animations, sound, video
 
 - Connect 3 Game
 
-  - grid layout 
+  - grid layout  : to draw the board
+
+    rowcount, columncount, Layout_margin, 
+
   - tags : keep track on which area is filled in counter
+
   - animation learned in the previous sections
 
+- Video
+
+  
