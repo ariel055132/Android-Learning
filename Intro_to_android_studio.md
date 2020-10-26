@@ -97,4 +97,9 @@ animations, sound, video
     Small Task : click image, bart simpson -> Homer Simpson -> bart simpson
     
     add a boolean variable to control to show which image
+  
+- Other Animations
+
+  1. translationX() : move
+  2. translationXBy() : moves it in the x direction by a certain number of the piece
 
