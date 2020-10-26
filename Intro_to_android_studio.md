@@ -100,6 +100,16 @@ animations, sound, video
   
 - Other Animations
 
+  Always remember to setDuration();
+
   1. translationX() : move
   2. translationXBy() : moves it in the x direction by a certain number of the piece
+  3. rotation(degrees) : rotate by the degrees
+  4. scale : scale to a specific value
+
+- Connect 3 Game
+
+  - grid layout 
+  - tags : keep track on which area is filled in counter
+  - animation learned in the previous sections
 
