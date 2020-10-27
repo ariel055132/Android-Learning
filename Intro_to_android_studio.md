@@ -119,4 +119,86 @@ animations, sound, video
 
 - Video
 
-  
+  - How to embed a video to the App
+
+  - androiddevcourse.com/demovideo.mp4  -> demo video
+
+  - new Folder in res folder (called raw)
+
+  - main activity layout --> videoView
+
+    ```java
+    public class MainActivity extends AppCompatActivity {
+    	@Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState); // use the method from parents
+            setContentView(R.layout.activity_main);
+            VideoView videoView = (VideoView) findViewById(R.id.videoView);
+            // demovideo filepath
+            videoView.setVideoPath("android.resourse//" + getPackageName() + "/" + R.raw.demovideo);
+            // start playing the video
+            videoView.start();
+        }
+        // colon is missing after resource
+        // resource is mistyped to resourse
+    }
+    ```
+
+    However, the emulator show that the video cannot be played.
+
+    Correct the wrong file path and run again.
+
+    ```java
+    public class MainActivity extends AppCompatActivity {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            VideoView videoView = (VideoView) findViewById(R.id.videoView);
+    		
+    		// resourse --> resource:
+            // Most of the solutions in StackOverFlow tend to use uriPath to save the file path before putting it into setVideoURI
+            // setVideoPath can only be used if the video is stored on your device, use setVideoURI is more appropriate
+            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.demovideo;
+            Uri uri = Uri.parse(uriPath);
+            videoView.setVideoURI(uri);
+            videoView.start();
+        }
+    }
+    ```
+
+    Then, the emulator show that NO AMD Vulkan driver is found.
+
+    Create a new virtual machine, select Software - GLES 2.0 in the Emulated Performance while creating the AVD (https://stackoverflow.com/questions/58391908/android-studio-emulator-is-not-working-on-windows-7/58392200#comment103130350_58391908)
+
+    Finally, the video can played smoothly.
+
+    Although the video can be played smoothly, we noticed that where were no controls on that video. Therefore, add some controls (Play, Pause, Stop, etc)
+
+    Media Controller is added.
+
+    ```java
+    public class MainActivity extends AppCompatActivity {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            VideoView videoView = (VideoView) findViewById(R.id.videoView);
+            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.demovideo;
+            Uri uri = Uri.parse(uriPath);
+            videoView.setVideoURI(uri);
+            
+            // this means in this app
+            MediaController mediaController = new MediaController(this);
+            // Anchor the controller to the video
+            mediaController.setAnchorView(videoView);
+            // Allow the mediaController to control the videoView
+            videoView.setMediaController(mediaController);
+    
+            videoView.start();
+        }
+    }
+    ```
+
+    You will find the controller under the video.
+
