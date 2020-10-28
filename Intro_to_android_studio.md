@@ -200,5 +200,179 @@ animations, sound, video
     }
     ```
 
-    You will find the controller under the video.
+    You will find the controller under the video. You can control the video now
+
+- Audio
+
+  - Create raw folder in res folder
+
+  - no actual component to the audio player by default (no AudioView)
+
+    ```java
+    public class MainActivity extends AppCompatActivity {
+    
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            // setting up a MediaPlayer
+            // create (where to be put, file path)
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.bicycle_bell_ring);
+            // Play
+            mediaPlayer.start();
+        }
+    }
+    ```
+
+    Create our own system to control the audio (no MediaController in audio)
+
+    Add two buttons to the app (Play and pause)
+
+    ```java
+    public class MainActivity extends AppCompatActivity {
+    
+        MediaPlayer mediaPlayer;
+    
+        // Control system for the audio
+        public void play(View view) {
+            mediaPlayer.start();
+        }
+    
+        public void pause(View view) {
+            mediaPlayer.pause();
+        }
+    
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            // Prevent bug
+            // When the user press pause but there is nothing to be played, the app will crash
+            // Default there is some audio running in the app
+            mediaPlayer = MediaPlayer.create(this, R.raw.bicycle_bell_ring);
+        }
+    }
+    ```
+
+- Audio -- Volume and Seeking
+
+  - use sliders to seek backwards and forwards through the audio and to change the volume
+
+  - seekbar : a slide up (use it to control the volume)
+
+    ```java
+    public class MainActivity extends AppCompatActivity {
+    
+        MediaPlayer mediaPlayer;
+    
+        // Control system for the audio
+        public void play(View view) {
+            mediaPlayer.start();
+        }
+    
+        public void pause(View view) {
+            mediaPlayer.pause();
+        }
+    
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            // Prevent bug
+            // When the user press pause but there is nothing to be played, the app will crash
+            // Default there is some audio running in the app
+            mediaPlayer = MediaPlayer.create(this, R.raw.bicycle_bell_ring);
+    		
+            // SeekBar implementation
+            SeekBar volumeControl = (SeekBar) findViewById(R.id.volumeSeekBar);
+            volumeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    
+                // Sth changed on the seek bar
+                // int progress : the value of the seekbar
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    Log.i("Seekbar changed", Integer.toString(progress));
+                }
+    
+                // Users start touching the seek bar
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                }
+    
+                // Users stop touching the seek bar
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                }
+            });
+        }
+    }
+    ```
+
+  - Audio Controller : control the volume through the seek bar
+
+    ```java
+    public class MainActivity extends AppCompatActivity {
+    
+        MediaPlayer mediaPlayer;
+        AudioManager audioManager;
+    
+        // Control system for the audio
+        public void play(View view) {
+            mediaPlayer.start();
+        }
+    
+        public void pause(View view) {
+            mediaPlayer.pause();
+        }
+    
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+    
+            // Use the system service to fulfill audio request
+            audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+    
+            // get the maximum volume of the device, it may not be 100
+            int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            // get the current volume
+            int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+    
+            // When the user press pause but there is nothing to be played, the app will crash (Bug)
+            // Default there is some audio running in the app
+            mediaPlayer = MediaPlayer.create(this, R.raw.bicycle_bell_ring);
+    
+            //int minVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC);
+            SeekBar volumeControl = (SeekBar) findViewById(R.id.volumeSeekBar);
+            volumeControl.setMax(maxVolume);
+            // Set the current volume
+            volumeControl.setProgress(currentVolume);
+    
+            volumeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    
+                // Sth changed on the seek bar
+                // int progress : the value of the seekbar
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    Log.i("Seekbar changed", Integer.toString(progress));
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
+                }
+    
+                // Users start touching the seek bar
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+    
+                }
+    
+                // Users stop touching the seek bar
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+    
+                }
+            });
+        }
+    }
+    ```
+
+    
 
