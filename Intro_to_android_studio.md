@@ -92,6 +92,7 @@ animations, sound, video
     // change the image 
     imageView.animate().alpha(0).setDuration(2000); // transparency, faded out completely after 2 seconds
     imageView.animate().alpha(1).setDuration(2000); 
+    ```
 ```
     
     Small Task : click image, bart simpson -> Homer Simpson -> bart simpson
@@ -142,12 +143,12 @@ animations, sound, video
         // colon is missing after resource
         // resource is mistyped to resourse
     }
-    ```
+```
 
     However, the emulator show that the video cannot be played.
-
+    
     Correct the wrong file path and run again.
-
+    
     ```java
     public class MainActivity extends AppCompatActivity {
         @Override
@@ -166,17 +167,17 @@ animations, sound, video
         }
     }
     ```
-
+    
     Then, the emulator show that NO AMD Vulkan driver is found.
-
+    
     Create a new virtual machine, select Software - GLES 2.0 in the Emulated Performance while creating the AVD (https://stackoverflow.com/questions/58391908/android-studio-emulator-is-not-working-on-windows-7/58392200#comment103130350_58391908)
-
+    
     Finally, the video can played smoothly.
-
+    
     Although the video can be played smoothly, we noticed that where were no controls on that video. Therefore, add some controls (Play, Pause, Stop, etc)
-
+    
     Media Controller is added.
-
+    
     ```java
     public class MainActivity extends AppCompatActivity {
         @Override
@@ -199,7 +200,7 @@ animations, sound, video
         }
     }
     ```
-
+    
     You will find the controller under the video. You can control the video now
 
 - Audio
@@ -260,6 +261,8 @@ animations, sound, video
 
   - seekbar : a slide up (use it to control the volume)
 
+  - SeekBar是ProgressBar的扩展，它比进度条多了一个可以拖动的功能，这样用户可以控制进度条，比如播放电影，音乐，图片缩放的时候可以控制图片预览，
+  
     ```java
     public class MainActivity extends AppCompatActivity {
     
@@ -305,11 +308,11 @@ animations, sound, video
                 }
             });
         }
-    }
+  }
     ```
 
   - Audio Controller : control the volume through the seek bar
-
+  
     ```java
     public class MainActivity extends AppCompatActivity {
     
@@ -371,8 +374,25 @@ animations, sound, video
                 }
             });
         }
-    }
+  }
     ```
 
+  - setMax(int max) : 设置最大值
+  
+  - setMin(int min) : 设置最小值
+  
+  - setProgress(int progress) : 设置seekbar当前的默认值，范围0到max之间
+  
+  - setThumb(Drawable thumb) : 显示的那个可拖动图标，如果没有设置该参数则为系统默认,如果自己需要重新定义，则将自己需要的图标存放在资源目录 /res/drawable下，然后调用即可。
+  
+  - setThumbOffset(int thumbOffset) : 拖动图标的偏量值,可以让拖动图标超过bar的长度
+  
+  - 		setProgressDrawable(Drawable d) : 自定义进度条背景
+
+
+- Grid Layouts
+
+  - Gravity
+  
     
 
