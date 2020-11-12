@@ -122,7 +122,85 @@
 
 * Learn about text field and see how we can get the data within the text field
 
+* Text Fields主要是一些動態的和用戶交互的內容，也即EditText，一般都需要輸入。像Plain Text，Person Name，Password，E-mail，Phone，Postal Address， Multiline Text，Time，Date，Number等。
 
+* Select Plain Text element in activity_main.xml 
+
+* hint : reminds user what types of information should he/she put 
+
+  ```java
+  package com.example.interactivitydemo;
+  
+  import androidx.appcompat.app.AppCompatActivity;
+  
+  import android.os.Bundle;
+  import android.util.Log;
+  import android.view.View;
+  import android.widget.EditText;
+  
+  public class MainActivity extends AppCompatActivity {
+      public void clickFunction(View view) {
+          // get the value of the name input by user
+          EditText nameEditText = (EditText)findViewById(R.id.nameEditText);
+          // display it into the logs
+          // finds the texts, get the text, convert to string for output
+          Log.i("Values", nameEditText.getText().toString());
+      }
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+      }
+  }
+  ```
+
+* EX : create a login page that need the username and password enter, after press the button should say log in.
+
+  ```java
+  package com.example.interactivitydemo;
+  
+  import androidx.appcompat.app.AppCompatActivity;
+  
+  import android.os.Bundle;
+  import android.util.Log;
+  import android.view.View;
+  import android.widget.EditText;
+  
+  // Ex : create a login page that need the username and password enter, after press the button should say log in.
+  public class MainActivity extends AppCompatActivity {
+      public void clickFunction(View view) {
+          // get the value of the name / Password input by user
+          EditText userName = (EditText)findViewById(R.id.userName);
+          EditText pwd = (EditText)findViewById(R.id.passWord);
+          String user = userName.getText().toString();
+          String password = pwd.getText().toString();
+  
+          boolean hasName = true;
+          boolean hasPassword = true;
+  
+          // Check whether username and password is inputed
+          if (user.isEmpty()) {
+              hasName = false;
+          } else if (password.isEmpty()) {
+              hasPassword = false;
+          }
+  
+          if (hasName && hasPassword) {
+              Log.i("Success", "Log in");
+  
+          } else {
+              Log.i("Fail" , "Input username and password");
+          }
+      }
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+      }
+  } 	
+  ```
+
+  
 
 
 
