@@ -1,17 +1,55 @@
-- Textview 
+## Introduction to Android Studio
+##### Android Studio Overview
+* manifests\AndroidManifest.xml
+  - Contains the information about your app
+* java\com.example.exampleApp\MainActivity
+  - code for our app, main activity in our app
+* res folder
+  - resources for our app, where we keep things like images
+* res\layout\activity_main.xml
+  - visual representation of the app
 
-- Buttons
 
-- Text Fields
 
-- AppCompactActivity : for activity which has an action bar at the top
+##### Formatting Text
+* TextView 
+  * Display text in the app
+  * Fundamental user interface / UI element of view
+  * Always add constraint / margins to textView in order to plan how it should be fixed on the screen
+* Edit under activity_main.xml
+* Attributes on the right 
+  * Constraints : set up the position you want to put the string
+  * layout_width, layout_height : match_constraint
+  * text : string you want to show
+  * font family, text Size, line Spacing, text colors, text Style, text alignment
+  * visibility : the text appeared / disapperaed ?
+  * padding
+  * alpha :  the transparency of the string
+  * gravity : how the content of the text view floats around its container
+  * background : 背景, can be image / color
+* EX : Migrate app in green and bold and pretty large font and with an orange background
 
-- public (JAVA) : it can be accessed from anywhere
+##### Button
+* set up constraints of button first in order to fixed its position
 
-- extends : takes all the code from the extended / imported library and allows us to use any methods within the class
-  
+- onClick : things will do after clicking the button
+
+
+
+
+
+
+
+
+
+
+* Text Fields
+* AppCompactActivity : for activity which has an action bar at the top
+* public (JAVA) : it can be accessed from anywhere
+* extends : takes all the code from the extended / imported library and allows us to use any methods within the class
+
   - For example, extends AppCompactActivity means that you takes all the code from AppCompactActivity and allows you to use the methods inside the library
-  
+
 - Log.i() : show the data in 6.Logcat
 
 - @Override : use the methods that exists in some library and adding some extra code for our use

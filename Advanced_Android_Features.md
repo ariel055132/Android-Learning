@@ -84,4 +84,9 @@
      ```
 
 
-2. Timers
+- Timers
+
+  Do timing functions
+
+  - Handler : allow us to do some timing functions
+  - Runnable : 
