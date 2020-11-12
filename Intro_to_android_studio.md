@@ -1,5 +1,5 @@
 ## Introduction to Android Studio
-##### Android Studio Overview
+#### Android Studio Overview
 * manifests\AndroidManifest.xml
   - Contains the information about your app
 * java\com.example.exampleApp\MainActivity
@@ -8,55 +8,123 @@
   - resources for our app, where we keep things like images
 * res\layout\activity_main.xml
   - visual representation of the app
+* When Device freeze, click AVD Manager, choose the device, wipe out the data 
 
-
-
-##### Formatting Text
+#### Formatting Text
 * TextView 
   * Display text in the app
   * Fundamental user interface / UI element of view
   * Always add constraint / margins to textView in order to plan how it should be fixed on the screen
-* Edit under activity_main.xml
-* Attributes on the right 
+  * 顯示給使用者看的文字，使用者不得修改，只有開發者才行
+* Edit under activity_main.xml (list useful attributes only)
+	* 文字設定：android:text="要顯示在畫面上的文字"
+  * 設定ID：android:id="@+id/此物件的ID"
+* 設定寬：android:layout_width="寬度dp"
+	* 設定高：android:layout_height="高度dp" ※寬度、高度的單位是用DP也稱DIP (Density- Independent Pixels)
+	* 文字大小：android:textSize = "輸入文字大小sp" ※文字大小使用單位是SP也稱SIP(Scale Independent Pixels)
+	* 背景顏色：android:background="#色碼"
+	* 文字顏色：android:textColor="@color/顏色"  ※需要到value/colors.xml 中先設定
+	* 文字粗體：android:textStyle="bold"
+	* 文字斜體：android:textStyle="italic"
+	* 文字換行：Hello \n World  ※換行的部分要在 value/strings.xml 設定
+	* 文字置中：android:gravity="center_horizontal"
+	* 文字靠右：android:gravity="right"
+	* 文字靠左：android:gravity="left"
+	
+* Attributes on the right bar
   * Constraints : set up the position you want to put the string
   * layout_width, layout_height : match_constraint
   * text : string you want to show
   * font family, text Size, line Spacing, text colors, text Style, text alignment
-  * visibility : the text appeared / disapperaed ?
+  * visibility : the text appeared / disappeared ?
   * padding
   * alpha :  the transparency of the string
   * gravity : how the content of the text view floats around its container
   * background : 背景, can be image / color
 * EX : Migrate app in green and bold and pretty large font and with an orange background
 
-##### Button
+#### Button
 * set up constraints of button first in order to fixed its position
 
-- onClick : things will do after clicking the button
+* onClick : things will do when button is clicked, need to create the click function method in JAVA (MainActivity.java) 新增反應點擊事件的 Method
+
+* 按鈕所觸發的事件處理，稱之為Event Handler，只不過在android的世界裡，按鈕事件是由系統的Button.onClickListener所控制。
+
+* remember and setup the id of the button 
+
+* 按鈕要加在 `activity_main.xml` 這個檔案中
+
+* wrap_content : 「包覆內容」，意思就是「根據內容」決定該參數的值會是多少。  Android UI 元件的必填屬性
+
+* 在按鈕裡面要設定文字內容，使用android:text屬性，但是系統會叫你在string resource裏面設定
+
+  * 直接開啟 `app/res/values/strings.xml` 在裡面新增字串設定
+  * 使用 Android Studio 的自動抽離功能 (automatically extract) ，把指定字串加入第一點提到的 `strings.xml` 這個檔案裡
+
+  ```java
+  package com.example.exampleapp;
+  
+  // import library to allow us to use certain features of the Android OS
+  import androidx.appcompat.app.AppCompatActivity; // the action bar at the top and show the name of the app
+  
+  import android.os.Bundle; // os bundle for the Android OS itself
+  import android.util.Log;
+  import android.view.View;
+  
+  // class : a chunk of code that contains variables, function, methods (class name is MainActivity, means it is the class that controls out activity)
+  // public : it can be accessed from anywhere within the app
+  // extends : allows us to use any methods or variables within AppCompatActivity class
+  public class MainActivity extends AppCompatActivity {
+      // create clickFunction method for button
+      public void clickFunction(View view) {
+          // use Logs to interact with the App, i for information, e for error
+          // tag : describe the type of log entry that we are making
+          // msg : the message
+          Log.i("Info", "Button Pressed");
+      }
+  
+      // onCreate : run when the activity is used
+      // @Override : use the methods that exists in some library and adding some extra code for our use
+      // protected : it can be accessed within the app but not outside the app
+      // public : it can also be accessed outside the map
+      // void : the functions does not return anything
+      // contentView : links to the activity_main.xml (particular layout)
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+      }
+  }
+  ```
+
+* EX : Create an interactivity demo that create the log you like when the button is pressed
+
+  ```java
+  package com.example.exampleapp;
+  import androidx.appcompat.app.AppCompatActivity;
+  import android.os.Bundle; 
+  import android.util.Log;
+  import android.view.View;
+  
+  public class MainActivity extends AppCompatActivity {
+      public void clickFunction(View view) {
+          Log.i("Info", "It worked!!!!!!!");
+      }
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+      }
+  }
+  ```
+
+#### Text Fields
+
+* Learn about text field and see how we can get the data within the text field
 
 
 
 
-
-
-
-
-
-
-* Text Fields
-* AppCompactActivity : for activity which has an action bar at the top
-* public (JAVA) : it can be accessed from anywhere
-* extends : takes all the code from the extended / imported library and allows us to use any methods within the class
-
-  - For example, extends AppCompactActivity means that you takes all the code from AppCompactActivity and allows you to use the methods inside the library
-
-- Log.i() : show the data in 6.Logcat
-
-- @Override : use the methods that exists in some library and adding some extra code for our use
-
-- onCreate : the activity is created
-
-- Device freeze, AVD Manager, choose the device, wipe out the data 
 
 - Display messages 
 

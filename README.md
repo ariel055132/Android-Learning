@@ -1,8 +1,10 @@
 # Android-Learning
 
-1. NumberShapes
+1. ExampleApp
+   * Implementation of Text View
+2. NumberShapes
    - Determine whether the number is a triangular number or square number
-2. HigherOrLower
+3. HigherOrLower
    - Guessing Number 
-3. Animation
+4. Animation
    - Animation Demo (Faded out and replace by another image)
