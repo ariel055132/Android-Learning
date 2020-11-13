@@ -124,7 +124,7 @@
 
 * Text Fields主要是一些動態的和用戶交互的內容，也即EditText，一般都需要輸入。像Plain Text，Person Name，Password，E-mail，Phone，Postal Address， Multiline Text，Time，Date，Number等。
 
-* Select Plain Text element in activity_main.xml 
+* Select **Plain Text** element in activity_main.xml  (in order to get the text input by the user)
 
 * hint : reminds user what types of information should he/she put 
 
@@ -207,7 +207,7 @@
 - Toast (Context context, CharSequence text, int duration).show(); 
   
   - pop up, appear from the bottom (default)
-  - Context : 應用程式的Context
+  - Context : 應用程式的Context, where should it appear
   - CharSequence : the message you want to show
   - Duration : the exist time of the message
     - Toast.LENGTH_SHORT : 2 seconds
@@ -228,7 +228,38 @@
   }
   ```
   
+  Ex : Create a app with a simple text view (what's your name) at the top, and then enter your name, toast will show your name. --> Toast Demo
   
+  ```java
+  package com.example.toastdemo;
+  import androidx.appcompat.app.AppCompatActivity;
+  import android.os.Bundle;
+  import android.view.View;
+  import android.widget.EditText;
+  import android.widget.Toast;
+  
+  public class MainActivity extends AppCompatActivity {
+      public void clickFunction(View view) {
+          EditText nameEditText = (EditText)findViewById(R.id.name);
+          String name = nameEditText.getText().toString();
+          Toast.makeText(this, "hello " + name, Toast.LENGTH_LONG).show();
+      }
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+      }
+  }
+  ```
+#### Images
+
+  
+
+
+
+
+
+
 
 - Images 
   - save the images to res, drawable folder
