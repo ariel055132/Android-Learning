@@ -201,10 +201,8 @@
   ```
 
   
-
-
-
-- Display messages 
+#### Display messages
+* We use *Toast*  to display messages at the bottom of the app (default).
 
 - Toast (Context context, CharSequence text, int duration).show(); 
   
