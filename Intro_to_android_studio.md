@@ -252,8 +252,11 @@
   }
   ```
 #### Images
-
-  
+* Images should be saved to res\drawable folder
+* **imageView** in activity_main.xml
+* the image file name should be in lowercase
+* scaleType : how to squeezing the image into the image container (imageView) 
+* Ex : Create a app with one button and two images, when you clicked the button, the image will switch to each other. The button should be aligned at the right corner of the app
 
 
 
