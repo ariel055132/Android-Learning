@@ -296,7 +296,42 @@
   
 - onClick : the method called when a button is pressed 
 
-- EX : Currency converter
+- EX : Currency converter (to create an app to ask the user to enter the pounds, then convert it to dollars which is about 1.3, show the result in Toast)
+
+  1. ImageView to show the image
+  2. TextView to show the statement : enter the amount you want to convert
+  3. PlainText to allow user to enter the pounds
+  4. Button to start doing convertion
+  5. Toast to show the result
+
+  ```java
+  package com.example.currency_converter;
+  
+  import androidx.appcompat.app.AppCompatActivity;
+  
+  import android.os.Bundle;
+  import android.view.View;
+  import android.widget.EditText;
+  import android.widget.Toast;
+  
+  public class MainActivity extends AppCompatActivity {
+      // Currency converter demo
+      // Converts from pounds to dollars which is about 1.3
+      public void clickFunction(View view) {
+          EditText price = (EditText) findViewById(R.id.editText);
+          String value = price.getText().toString();
+          int p = Integer.parseInt(value);
+          double d = p * 1.3;
+          String result = String.format("%.2f", d);
+          Toast.makeText(this, result , Toast.LENGTH_SHORT).show();
+      }
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+      }
+  }
+  ```
 
   
 
