@@ -337,39 +337,8 @@
 
 
 
-Chapter 4
 
-animations, sound, video
 
-- Images, Video and Sound
-  - make app to be more interactive and fun to use
-  - grid layout
-  
-- Customizing App Layouts
-
-  1. Constrained Layout
-  2. Relative Layout
-  3. Text Tab (use XML to describe the layout)
-  4. Linear Layout
-
-- Fading animations
-
-  - Create app with image Bart Simpson and when the image is tapped we are going to morph him into homer Simpson
-
-  - res -> drawable folder
-
-  - image file name must contain lowercase or numbers (fuck!!!!!!)
-
-  - ImageView -> Set the constraints -> search onclick -> name the function -> MainActivity.java -> defined the function 
-
-    ```java
-    // find the imageView by ID
-    ImageView imageView = (ImageView) findViewById(R.id.imageView); // Bart Simpson
-    ImageView imageView1 = (ImageView) findViewById(R.id.imageView1); // Homer Simpson
-    // change the image 
-    imageView.animate().alpha(0).setDuration(2000); // transparency, faded out completely after 2 seconds
-    imageView.animate().alpha(1).setDuration(2000); 
-    ```
 ```
     
     Small Task : click image, bart simpson -> Homer Simpson -> bart simpson
