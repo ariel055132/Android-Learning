@@ -253,16 +253,40 @@
   ```
 #### Images
 * Images should be saved to res\drawable folder
+
 * **imageView** in activity_main.xml
+
 * the image file name should be in lowercase
+
 * scaleType : how to squeezing the image into the image container (imageView) 
+
 * Ex : Create a app with one button and two images, when you clicked the button, the image will switch to each other. The button should be aligned at the right corner of the app
 
-
-
-
-
-
+  ```java
+  package com.example.imageswitcher;
+  
+  import androidx.appcompat.app.AppCompatActivity;
+  
+  import android.os.Bundle;
+  import android.util.Log;
+  import android.view.View;
+  import android.widget.ImageView;
+  
+  public class MainActivity extends AppCompatActivity {
+  
+      public void clickFunction(View view){
+          Log.i("Info", "Button is pressed");
+          ImageView img = (ImageView) findViewById(R.id.imageView);
+          img.setImageResource(R.drawable.cat2);
+      }
+  
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+      }
+  }
+  ```
 
 - Images 
   - save the images to res, drawable folder
@@ -272,7 +296,9 @@
   
 - onClick : the method called when a button is pressed 
 
-- Currency converter
+- EX : Currency converter
+
+  
 
 
 
