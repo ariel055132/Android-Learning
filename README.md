@@ -14,3 +14,5 @@
    - Guessing Number 
 7. Animation and Animation 1
    - Animation Demo (Faded out and replace by another image)
+8. Video
+   - Video implementation (Adding controls, play the video)
