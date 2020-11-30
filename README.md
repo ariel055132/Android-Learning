@@ -24,4 +24,7 @@
     * Implementation of ListView, click on the element on list view, the name will be show in pop up
 12. Multiplication Table
     * Multiplication table based on the number user change in the seekbar
-13. 
+13. Timers
+    * basic demo of handler and runnable
+14. Timers1
+    * Count Down timer
