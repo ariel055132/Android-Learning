@@ -2,7 +2,7 @@
 
 #### Customising App Layout
 
-- activity_main.xml  -> left patlets -> Layout -> Choose the layout that you used to create the app
+* activity_main.xml  -> left patlets -> Layout -> Choose the layout that you used to create the app
 
 1. Constrained Layout (default in android 3)
    - use the constrain to decide the components that where they are going to display on the screen 
@@ -74,7 +74,7 @@
 
 1. Another Animation
 
-   - translationX : translates to a particular value (same as move)
+   * translationX : translates to a particular value (same as move) 移动到哪里
 
      ```java
      ImageView imageView = (ImageView) findViewById(R.id.imageView);
@@ -82,7 +82,7 @@
      imageView.animate().translationX(-1000).setDuration(2000);
      ```
 
-   - translationXBy : move it in the x direction by a certain number of the piece
+   * translationXBy : move it in the x direction by a certain number of the piece 沿x轴平行移动500个单位
 
      ```
      ImageView imageView = (ImageView) findViewById(R.id.imageView);
@@ -90,20 +90,20 @@
      imageView.animate().translationXBy(-1000).setDuration(2000);
      ```
 
-   - Difference of translation and translationBy
+   * Difference of translation and translationBy
 
-     - for translationY it represents an absolute position,
-     - for translationYBy it represents on offset from the current value.
-     - e.g : if you set translationYBy(100) it would move the current position from 360 to 460 and remane at position 460
+     * for translationY it represents an absolute position,
+     * for translationYBy it represents on offset from the current value.
+     * e.g : if you set translationYBy(100) it would move the current position from 360 to 460 and remane at position 460
 
-   - Rotation(degrees) : rotates with the degrees
+   * Rotation(degrees) : rotates with the degrees
 
      ```java
      // rotate 30 degrees in 2 seconds
      imageView.animate().rotation(30).setDuration(2000);
      ```
 
-   - Scale : scale to a specific value
+   * Scale : scale to a specific value
 
      ```java
      // shrink the original image scale to half
@@ -111,9 +111,9 @@
      imageView.animate().scaleX((float)0.5).scaleY((float)0.5).setDuration(2000);
      ```
 
-   - ScaleBy : scale by a specific value
+   * ScaleBy : scale by a specific value
 
-   - EX: animate image into existence, start the app with a blank screen, spin into action from the left, after the animation the image should be full screen just like it was at the beginning of the app.
+   * EX: animate image into existence, start the app with a blank screen, spin into action from the left, after the animation the image should be full screen just like it was at the beginning of the app.
 
      ```java
      package com.example.animation1;
@@ -148,5 +148,58 @@
      }
      ```
 
-     
+#### Video
+
+* Learn how to embed a video to the App
+
+* put the video in **res/raw folder** (if raw folder was not found in android studio, create a directory in res folder)
+
+* **VideoView** in main activity layout
+
+  ```java
+  package com.example.video;
+  
+  import androidx.appcompat.app.AppCompatActivity;
+  import android.media.MediaPlayer;
+  import android.net.Uri;
+  import android.os.Bundle;
+  import android.widget.MediaController;
+  import android.widget.VideoView;
+  
+  public class MainActivity extends AppCompatActivity {
+  
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+          // find the VideoView by ID
+          VideoView videoView = (VideoView) findViewById(R.id.videoView);
+  		// set File Path of the video
+          String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.demovideo;
+          Uri uri = Uri.parse(uriPath);
+          // setVideoPath() can also be used, however it can only be used if the video is stored on your device, so use setVideoURI is more appropriate
+          videoView.setVideoURI(uri);
+          
+          // Add the controls (Play, Pause, Stop, etc) to the video, you will find these controls in the bottom of the video after adding these code
+          MediaController mediaController = new MediaController(this);
+          // Anchor the controller to the video
+          mediaController.setAnchorView(videoView);
+          // Allow the mediaController to control the videoView
+          videoView.setMediaController(mediaController);
+          // start play the video when the app is launched
+          videoView.start();
+      }
+  }
+  ```
+
+  * Some errors pop up :  NO AMD Vulkan driver is found.
+  * Solution : Create a new virtual machine, select Software - GLES 2.0 in the Emulated Performance while creating the AVD (https://stackoverflow.com/questions/58391908/android-studio-emulator-is-not-working-on-windows-7/58392200#comment103130350_58391908)
+
+
+
+#### Audio
+
+
+
+
 

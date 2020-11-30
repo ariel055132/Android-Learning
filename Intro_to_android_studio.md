@@ -288,15 +288,15 @@
   }
   ```
 
-- Images 
-  - save the images to res, drawable folder
-  - activity_main.xml, search image, select ImageView, choose the images we want to show
-  - layout the images 
-  - be careful of scaleType
+* Images 
+  * save the images to res, drawable folder (res/drawable/xxx.jpg)
+  * activity_main.xml, search image, select **ImageView**, choose the images we want to show
+  * layout the images 
+  * be careful of scaleType
   
-- onClick : the method called when a button is pressed 
+* onClick : the method called when a button is pressed 
 
-- EX : Currency converter (to create an app to ask the user to enter the pounds, then convert it to dollars which is about 1.3, show the result in Toast)
+* EX : Currency converter (to create an app to ask the user to enter the pounds, then convert it to dollars which is about 1.3, show the result in Toast)
 
   1. ImageView to show the image
   2. TextView to show the statement : enter the amount you want to convert
@@ -340,114 +340,12 @@
 
 
 ```
-    
-    Small Task : click image, bart simpson -> Homer Simpson -> bart simpson
-    
-    add a boolean variable to control to show which image
-  
-- Other Animations
-
-  Always remember to setDuration();
-
-  1. translationX() : move
-  2. translationXBy() : moves it in the x direction by a certain number of the piece
-  3. rotation(degrees) : rotate by the degrees
-  4. scale : scale to a specific value
-
 - Connect 3 Game
-
   - grid layout  : to draw the board
-
     rowcount, columncount, Layout_margin, 
-
   - tags : keep track on which area is filled in counter
-
   - animation learned in the previous sections
-
-- Video
-
-  - How to embed a video to the App
-
-  - androiddevcourse.com/demovideo.mp4  -> demo video
-
-  - new Folder in res folder (called raw)
-
-  - main activity layout --> videoView
-
-    ```java
-    public class MainActivity extends AppCompatActivity {
-    	@Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState); // use the method from parents
-            setContentView(R.layout.activity_main);
-            VideoView videoView = (VideoView) findViewById(R.id.videoView);
-            // demovideo filepath
-            videoView.setVideoPath("android.resourse//" + getPackageName() + "/" + R.raw.demovideo);
-            // start playing the video
-            videoView.start();
-        }
-        // colon is missing after resource
-        // resource is mistyped to resourse
-    }
 ```
-
-    However, the emulator show that the video cannot be played.
-    
-    Correct the wrong file path and run again.
-    
-    ```java
-    public class MainActivity extends AppCompatActivity {
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            VideoView videoView = (VideoView) findViewById(R.id.videoView);
-    		
-    		// resourse --> resource:
-            // Most of the solutions in StackOverFlow tend to use uriPath to save the file path before putting it into setVideoURI
-            // setVideoPath can only be used if the video is stored on your device, use setVideoURI is more appropriate
-            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.demovideo;
-            Uri uri = Uri.parse(uriPath);
-            videoView.setVideoURI(uri);
-            videoView.start();
-        }
-    }
-    ```
-    
-    Then, the emulator show that NO AMD Vulkan driver is found.
-    
-    Create a new virtual machine, select Software - GLES 2.0 in the Emulated Performance while creating the AVD (https://stackoverflow.com/questions/58391908/android-studio-emulator-is-not-working-on-windows-7/58392200#comment103130350_58391908)
-    
-    Finally, the video can played smoothly.
-    
-    Although the video can be played smoothly, we noticed that where were no controls on that video. Therefore, add some controls (Play, Pause, Stop, etc)
-    
-    Media Controller is added.
-    
-    ```java
-    public class MainActivity extends AppCompatActivity {
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            VideoView videoView = (VideoView) findViewById(R.id.videoView);
-            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.demovideo;
-            Uri uri = Uri.parse(uriPath);
-            videoView.setVideoURI(uri);
-            
-            // this means in this app
-            MediaController mediaController = new MediaController(this);
-            // Anchor the controller to the video
-            mediaController.setAnchorView(videoView);
-            // Allow the mediaController to control the videoView
-            videoView.setMediaController(mediaController);
-    
-            videoView.start();
-        }
-    }
-    ```
-    
-    You will find the controller under the video. You can control the video now
 
 - Audio
 
