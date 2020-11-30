@@ -18,3 +18,7 @@
    - Video implementation (Adding controls, play the video)
 9. SoundDemo
    * a small audio player with 3 function (Play and Pause, Volume Control, Time Control)
+10. LoginDemo
+    * Demo a login page, ask user to enter its username and password
+11. ListView
+    * Implementation of ListView, click on the element on list view, the name will be show in pop up

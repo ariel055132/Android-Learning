@@ -1,6 +1,6 @@
 ## Advanced Android Features
 
-- List Views
+* List Views
 
   ListView是開發Android常用元件之一，它能把數據用清單方式顯示出來，而ListView必須利用Adapter將資料載入，Adapter是負責管理ListView每一列的資料與畫面
 
@@ -84,9 +84,9 @@
      ```
 
 
-- Timers
+* Timers
 
   Do timing functions
 
-  - Handler : allow us to do some timing functions
-  - Runnable : 
+  * Handler : allow us to do some timing functions
+  * Runnable : 
