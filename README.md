@@ -16,3 +16,5 @@
    - Animation Demo (Faded out and replace by another image)
 8. Video
    - Video implementation (Adding controls, play the video)
+9. SoundDemo
+   * a small audio player with 3 function (Play and Pause, Volume Control, Time Control)
