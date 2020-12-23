@@ -190,3 +190,47 @@
       }
   }
   ```
+
+* Count Down Timer
+
+  * Use another method to create count down timer
+
+    ```java
+    package com.example.timers1;
+    import androidx.appcompat.app.AppCompatActivity;
+    import android.os.Bundle;
+    import android.os.CountDownTimer;
+    import android.util.Log;
+    
+    public class MainActivity extends AppCompatActivity {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+    
+            // count down timer (how many millieseconds you want timer to ultimately run for)
+            // 10 seconds , interval
+            new CountDownTimer(10000, 1000){
+                // will be called when countDownInterval reached again
+                public void onTick(long millisecondsUntilDone) {
+                    Log.i("Seconds Left!", String.valueOf(millisecondsUntilDone / 1000));
+                }
+                // run when the timer is completely done
+                public void onFinish(){
+                    Log.i("Finish ", "No more countdown");
+                }
+            }.start(); // start the timer
+        }
+    }
+    ```
+
+* Showing and Hiding UI elements (enable and disable elements when sth is trigger)
+
+  https://stackoverflow.com/questions/5052288/how-can-i-hide-show-an-element-when-a-button-is-pressed
+
+  1. find the things you want to hide/show, name it with id
+  2. use findViewById(id) to find the thing
+  3. use onClickListener() to help with trigger
+  4. setVisibility
+
+  
