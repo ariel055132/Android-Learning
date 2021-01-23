@@ -265,4 +265,83 @@
   }
   ```
 
+* Downloading Web Content
+  * Get the HTML data on the background, instead of main thread
+  * Keep the app responsive
+  * threads are basically just where work happens in an app
+  * The example below will download the source code of the website
+
   
+  * ```java
+    package com.example.download_web_content;
+
+    import androidx.appcompat.app.AppCompatActivity;
+
+    import android.os.AsyncTask;
+    import android.os.Bundle;
+    import android.util.Log;
+
+    import java.io.IOException;
+    import java.io.InputStream;
+    import java.io.InputStreamReader;
+    import java.net.HttpURLConnection;
+    import java.net.MalformedURLException;
+    import java.net.URL;
+
+    public class MainActivity extends AppCompatActivity {
+
+        // Run the task in the background
+        public class downloadTask extends AsyncTask<String, Void, String> {
+
+            @Override
+            // String... --> String array
+            protected String doInBackground(String... urls) {
+                String result = "";
+                // URL objects, input must be URL, otherwise error is appeared
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+                // if the input is not URL, exceptions will be triggered.
+                try {
+                    url = new URL(urls[0]);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    InputStream inputStream = urlConnection.getInputStream(); // get the input
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    int data = inputStreamReader.read(); // read the data
+
+                    while(data != 1) {
+                        char current = (char) data;
+                        result += current;
+                        data = inputStreamReader.read();
+                    }
+                    return result;
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    return "Failed";
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return "Failed";
+                }
+
+            }
+        }
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            downloadTask task = new downloadTask();
+            String result = null;
+            try {
+                result = task.execute("https://www.zappycode.com").get();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Log.i("Result", result);
+        }
+    }
+    ```
+    * You will find error **Permission denied (missing INTERNET permission?)** after running this.
+    * We need to allow the app to use the Internet.
+    * manifests --> AndroidManifests.xml
+      * uses-permission android:name="android.permission.INTERNET"
