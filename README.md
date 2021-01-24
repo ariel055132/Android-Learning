@@ -28,3 +28,8 @@
     * basic demo of handler and runnable
 14. Timers1
     * Count Down timer
+15. MapFun
+    * Simple Google Map demo App
+    * Change the camera to mount Everest
+    * Change the red marker to yellow marker
+    * Satellite image
